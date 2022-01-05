@@ -1,15 +1,31 @@
-from cheinsteinpy.requestPage import requestWebsite
-from cheinsteinpy.parsers import cookieParser, pageParser, answerParser
-from cheinsteinpy import requestPage
+from .parsers import cookieParser, pageParser, answerParser
+from . import requestPage
 import asyncio
-import time
 
 def answer(url, cookie, userAgent):
+    """
+    Gets answer data from Chegg.
+
+    Parameters 
+    ----------
+    url : str
+        The url of the answer page.
+    cookie : str
+        Raw cookie json.
+    userAgent : str
+        The user agent to use.
+
+    Returns
+    -------
+    answer : str or array
+        The answer data.
+        In either string (non-chapter) or array (chapter).
+    """
     cookieStr = cookieParser.parseCookie(cookie)
     isChapter = pageParser.checkLink(url)["isChapter"]
     htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
-        time.sleep(8)
+        # await asyncio.sleep(6)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
         htmlRaw = htmlData

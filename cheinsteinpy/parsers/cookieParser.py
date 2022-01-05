@@ -1,10 +1,7 @@
 import json
 
 # Parses the Cookie for the Chegg Account
-def parseCookie(fileName):
-    with open(fileName, 'r') as f:
-        cookieTxt = f.read()
-    cookieRaw = json.loads(cookieTxt)
+def parseCookie(cookieRaw):
     cookieString = ""
     z = True
     for cookie in cookieRaw:
