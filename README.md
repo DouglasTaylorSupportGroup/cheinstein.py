@@ -9,3 +9,11 @@ Chegg is a great resource for many students around the world. Though since it is
 ### Currently Supported
 
 - Solutions
+
+## Installation
+
+Install cheinstein.py using pip:
+
+```shell
+$ pip install cheinsteinpy
+```
