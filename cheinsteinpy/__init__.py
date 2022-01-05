@@ -1,2 +1,2 @@
 from .api import *
-from requestPage import *
+from .requestPage import *
