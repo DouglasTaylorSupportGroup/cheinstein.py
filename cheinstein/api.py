@@ -1,6 +1,5 @@
 from .parsers import cookieParser, pageParser, answerParser
 from . import requestPage
-import asyncio
 
 def answer(url, cookie, userAgent):
     """
