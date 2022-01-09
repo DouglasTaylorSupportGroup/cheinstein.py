@@ -1,5 +1,6 @@
 from .parsers import cookieParser, pageParser, answerParser
 from . import requestPage
+import time
 
 def checkLink(url):
     """
@@ -40,7 +41,7 @@ def answer(url, cookie, userAgent):
     isChapter = pageParser.checkLink(url)["isChapter"]
     htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
-        # await asyncio.sleep(6)
+        time.sleep(8)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
         htmlRaw = htmlData
