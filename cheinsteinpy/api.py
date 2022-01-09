@@ -1,6 +1,22 @@
 from .parsers import cookieParser, pageParser, answerParser
 from . import requestPage
 
+def checkLink(url):
+    """
+    Checks if the url is a chapter or not.
+
+    Parameters
+    ----------
+    url : str
+        The url to check.
+
+    Returns
+    -------
+    isChapter : bool
+        True if chapter type solution, False if not.
+    """
+    return pageParser.checkLink(url)["isChapter"]
+
 def answer(url, cookie, userAgent):
     """
     Gets answer data from Chegg.
