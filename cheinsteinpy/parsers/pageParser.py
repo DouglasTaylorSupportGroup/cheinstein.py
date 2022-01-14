@@ -14,9 +14,10 @@ def parsePage(data, isChapter):
         chapter = data["data"]["textbook_solution"]["chapter"][0]
         json = chapter["problems"][0]
         solutionjson = json["solutionV2"][0]
+        questionjson = json["problemHtml"]
         # totalSteps = solutionjson["totalSteps"]
         # solutionSteps = solutionjson["steps"]
-        return solutionjson
+        return questionjson, solutionjson
     else:
         soup = bs(data, "html.parser")
         questionhtml = soup.find("div", {"class": "question-body-text"})
