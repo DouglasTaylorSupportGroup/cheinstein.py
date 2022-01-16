@@ -1,6 +1,7 @@
 from .parsers import cookieParser, pageParser, answerParser
 from . import requestPage
 import time
+import asyncio
 
 def checkLink(url):
     """
@@ -18,7 +19,7 @@ def checkLink(url):
     """
     return pageParser.checkLink(url)["isChapter"]
 
-def answer(url, cookie, userAgent):
+async def answer(url, cookie, userAgent):
     """
     Gets answer data from Chegg.
 
@@ -41,7 +42,7 @@ def answer(url, cookie, userAgent):
     isChapter = pageParser.checkLink(url)["isChapter"]
     htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
-        time.sleep(8)
+        await asyncio.sleep(8)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
         htmlRaw = htmlData
