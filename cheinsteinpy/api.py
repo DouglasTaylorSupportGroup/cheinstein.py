@@ -59,12 +59,12 @@ async def answer(url, cookie, userAgent):
         answer = parsedAnswer
     return answer
 
-def question(url, cookie, userAgent):
+async def question(url, cookie, userAgent):
     cookieStr = cookieParser.parseCookie(cookie)
     isChapter = pageParser.checkLink(url)["isChapter"]
     htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
-        # await asyncio.sleep(6)
+        await asyncio.sleep(8)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
         htmlRaw = htmlData
