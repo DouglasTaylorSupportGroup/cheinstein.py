@@ -5,8 +5,8 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="cheinsteinpy",
-    version="0.1.2",
-    author="jckli",
+    version="0.1.3",
+    author="jckli & okinahiru",
     description="A Python library to get information from Chegg.",
     long_description=long_description,
     long_description_content_type="text/markdown",
