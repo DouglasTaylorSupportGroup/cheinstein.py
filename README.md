@@ -9,6 +9,7 @@ Chegg is a great resource for many students around the world. Though since it is
 ### Currently Supported
 
 - Solutions
+- Questions
 
 ## Installation
 

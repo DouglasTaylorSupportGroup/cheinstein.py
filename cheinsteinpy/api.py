@@ -1,3 +1,4 @@
+from cheinsteinpy.parsers import questionParser
 from .parsers import cookieParser, pageParser, answerParser
 from . import requestPage
 import time
@@ -48,7 +49,7 @@ async def answer(url, cookie, userAgent):
         htmlRaw = htmlData
     dataRaw = pageParser.parsePage(htmlRaw, isChapter)
     if isChapter:
-        data = dataRaw
+        data = dataRaw[1]
     else:
         data = dataRaw[1]
     parsedAnswer = answerParser.getAnswer(data, isChapter)
@@ -57,6 +58,27 @@ async def answer(url, cookie, userAgent):
     else:
         answer = parsedAnswer
     return answer
+
+def question(url, cookie, userAgent):
+    cookieStr = cookieParser.parseCookie(cookie)
+    isChapter = pageParser.checkLink(url)["isChapter"]
+    htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
+    if isChapter:
+        # await asyncio.sleep(6)
+        htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
+    else:
+        htmlRaw = htmlData
+    dataRaw = pageParser.parsePage(htmlRaw, isChapter)
+    if isChapter:
+        data = dataRaw[0]
+    else:
+        data = dataRaw[0]
+    parsedQuestion = questionParser.getQuestion(data, isChapter)
+    if isChapter:
+        question = parsedQuestion
+    else:
+        question = parsedQuestion
+    return question
     
 
 
