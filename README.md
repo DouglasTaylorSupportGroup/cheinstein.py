@@ -1,5 +1,7 @@
 # cheinstein.py
 
+*The bot-master branch is built with async waits, to avoid Chegg's bot detection. This branch was made mainly for [EinsteinBot](https://github.com/DouglasTaylorSupportGroup/EinsteinBot).*
+
 ## A Python library to get information from Chegg.
 
 > **Note**: I am not affiliated with chegg.com in any way.
