@@ -41,7 +41,7 @@ def getAnswer(dataRaw, isChapter):
                     url = i["src"]
                     if ".cloudfront.net" in url:
                         url = f"https:{url}"
-                    i.replace_with(url)
+                    i.replace_with(" " + url + " ")
             answerList = []
             for k in dataRaw.contents[1:-1]:
                 txt = k.text
@@ -54,6 +54,6 @@ def getAnswer(dataRaw, isChapter):
             if answerList[0] == "\n":
                 answerList = answerList[1:]
             if answerList[-1] == "\n":
-                answerList = answerList[:-1]      
-            answerList = " ".join(answerList)
-            return answerList
+                answerList = answerList[:-1]
+            answer = (" ".join((" ".join(answerList)).split())).strip()
+            return answer
