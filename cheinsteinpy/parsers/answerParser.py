@@ -56,5 +56,5 @@ def getAnswer(dataRaw, isChapter):
                 answerList = answerList[1:]
             if answerList[-1] == "\n":
                 answerList = answerList[:-1]
-            answer = (" ".join((" ".join(answerList)).split())).strip()
+            answer = (" ".join((" ".join(answerList)).split(" "))).strip()
             return answer
