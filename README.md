@@ -20,3 +20,9 @@ Install cheinstein.py using pip:
 ```shell
 $ pip install cheinsteinpy
 ```
+
+# Author
+
+**cheinstein.py** © [DTSG](https://github.com/DouglasTaylorSupportGroup), Released under the [MIT License](https://github.com/DouglasTaylorSupportGroup/cheinstein.py/blob/main/LICENSE).
+
+Authored and maintained by [DouglasTaylorSupportGroup](https://github.com/DouglasTaylorSupportGroup).
