@@ -40,7 +40,8 @@ def getAnswer(dataRaw, isChapter):
                 for i in img:
                     url = i["src"]
                     if ".cloudfront.net" in url:
-                        url = f"https:{url}"
+                        if "https://" not in url:
+                            url = f"https:{url}"
                     i.replace_with(" " + url + " ")
             answerList = []
             for k in dataRaw.contents[1:-1]:
