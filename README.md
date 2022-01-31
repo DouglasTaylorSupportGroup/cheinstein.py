@@ -19,6 +19,10 @@ Install cheinstein.py using pip:
 $ pip install cheinsteinpy
 ```
 
+## Usage
+
+Refer to the [documentation](https://github.com/DouglasTaylorSupportGroup/cheinstein.py/wiki).
+
 # Author
 
 **cheinstein.py** © [DTSG](https://github.com/DouglasTaylorSupportGroup), Released under the [MIT License](https://github.com/DouglasTaylorSupportGroup/cheinstein.py/blob/main/LICENSE).
