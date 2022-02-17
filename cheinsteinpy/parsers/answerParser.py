@@ -34,8 +34,14 @@ def getAnswer(dataRaw, isChapter):
             if "<strong>" or "</strong>" in str(dataRaw):
                 strong = dataRaw.find_all("strong")
                 for i in strong:
-                    i.replace_with("**" + i.text + "**")
-            if "<img>" or "</img>" in str(dataRaw):
+                    if "<img>" or "</img>" or "<img alt=" in str(i):
+                        img = dataRaw.find_all("img")
+                        for i in img:
+                            url = i["src"]
+                            i.replace_with(url)
+                    else:
+                        i.replace_with("**" + i.text + "**")
+            if "<img>" or "</img>" or "<img alt=" in str(dataRaw):
                 img = dataRaw.find_all("img")
                 for i in img:
                     url = i["src"]
