@@ -4,18 +4,17 @@ import re
 def requestWebsite(url, cookie, userAgent):
     headers = {
         'Host': 'www.chegg.com',
-        'authority': 'www.chegg.com',
         "Accept-Encoding": "gzip, deflate, br",
-        'accept-language': 'en-US,en;q=0.5',
+        'Accept-Language': 'en-US,en;q=0.5',
         'cookie': cookie,
-        'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        'sec-ch-ua-mobile': '?0',
         'upgrade-insecure-requests': '1',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'sec-fetch-site': 'none',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'sec-fetch-site': 'cross-site',
         'sec-fetch-mode': 'navigate',
         'sec-fetch-user': '?1',
         'sec-fetch-dest': 'document',
+        'Upgrade-Insecure-Requests': '1',
+        'TE': 'trailers',
         'user-agent': userAgent,
         'referer': 'https://www.google.com/'
     }
@@ -25,18 +24,17 @@ def requestWebsite(url, cookie, userAgent):
 def requestChapter(url, cookie, userAgent, html):
     headers = {
         'Host': 'www.chegg.com',
-        'authority': 'www.chegg.com',
         "Accept-Encoding": "gzip, deflate, br",
-        'accept-language': 'en-US,en;q=0.5',
+        'Accept-Language': 'en-US,en;q=0.5',
         'cookie': cookie,
-        'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        'sec-ch-ua-mobile': '?0',
         'upgrade-insecure-requests': '1',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'sec-fetch-site': 'none',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'sec-fetch-site': 'cross-site',
         'sec-fetch-mode': 'navigate',
         'sec-fetch-user': '?1',
         'sec-fetch-dest': 'document',
+        'Upgrade-Insecure-Requests': '1',
+        'TE': 'trailers',
         'user-agent': userAgent,
         'referer': 'https://www.google.com/'
     }
@@ -62,18 +60,17 @@ def requestChapter(url, cookie, userAgent, html):
 def requestEnhancedAnswer(url, cookie, userAgent, html):
     headers = {
         'Host': 'www.chegg.com',
-        'authority': 'www.chegg.com',
         "Accept-Encoding": "gzip, deflate, br",
-        'accept-language': 'en-US,en;q=0.5',
+        'Accept-Language': 'en-US,en;q=0.5',
         'cookie': cookie,
-        'sec-ch-ua': '" Not;A Brand";v="99", "Google Chrome";v="91", "Chromium";v="91"',
-        'sec-ch-ua-mobile': '?0',
         'upgrade-insecure-requests': '1',
-        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
-        'sec-fetch-site': 'none',
+        'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+        'sec-fetch-site': 'cross-site',
         'sec-fetch-mode': 'navigate',
         'sec-fetch-user': '?1',
         'sec-fetch-dest': 'document',
+        'Upgrade-Insecure-Requests': '1',
+        'TE': 'trailers',
         'user-agent': userAgent,
         'referer': 'https://www.google.com/'
     }
