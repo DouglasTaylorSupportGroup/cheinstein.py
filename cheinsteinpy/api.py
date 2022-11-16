@@ -108,17 +108,31 @@ def question(url, cookie, userAgent):
     """
     cookieStr = cookieParser.parseCookie(cookie)
     isChapter = pageParser.checkLink(url)["isChapter"]
-    htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
         # await asyncio.sleep(6)
+        htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
-        htmlRaw = htmlData
+        qid = pageParser.getId(url)
+        data = {
+            "operationName":"QnaPageQuestionByLegacyId",
+            "variables": {
+                "id":int(qid)
+            },
+            "extensions": {
+                "persistedQuery": {
+                    "version":1,
+                    "sha256Hash":"26efed323ef07d1759f67adadd2832ac85d7046b7eca681fe224d7824bab0928"
+                }
+            }
+        }
+        raw = requestPage.requestGraphQl(cookieStr, userAgent, data)
+        htmlRaw = raw["data"]["questionByLegacyId"]["content"]["body"]
     dataRaw = pageParser.parsePage(htmlRaw, isChapter)
     if isChapter:
         data = dataRaw[0]
     else:
-        data = dataRaw[0]
+        data = dataRaw
     parsedQuestion = questionParser.getQuestion(data, isChapter)
     if isChapter:
         question = parsedQuestion

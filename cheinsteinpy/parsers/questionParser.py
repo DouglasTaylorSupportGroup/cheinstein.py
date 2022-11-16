@@ -32,9 +32,17 @@ def getQuestion(dataRaw, isChapter):
             img = dataRaw.find_all("img")
             for i in img:
                 url = i["src"]
-                i.replace_with(url)
+                i.replace_with(" " + url + " ")
+        if "<div>" or "</div>" in str(dataRaw):
+            div = dataRaw.find_all("div")
+            for i in div:
+                i.replaceWithChildren()
+        if "<br/>" in str(dataRaw):
+            br = dataRaw.find_all("br")
+            for i in br:
+                i.replace_with("")
         questionList = []
-        for k in dataRaw.contents[1:-1]:
+        for k in dataRaw.contents:
             txt = k.text
             questionList.append(txt)
         questionList = [x for x in questionList if x]
@@ -42,5 +50,5 @@ def getQuestion(dataRaw, isChapter):
             questionList = questionList[1:]
         if questionList[-1] == "\n":
             questionList = questionList[:-1]      
-        questionList = " ".join(questionList)
+        questionList = (" ".join((" ".join(questionList)).split(" "))).strip()
         return questionList
