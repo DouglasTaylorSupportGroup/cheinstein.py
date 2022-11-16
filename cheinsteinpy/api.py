@@ -18,6 +18,22 @@ def checkLink(url):
     """
     return pageParser.checkLink(url)["isChapter"]
 
+def getId(url):
+    """
+    Gets the id of the question.
+
+    Parameters
+    ----------
+    url : str
+        The url to check.
+
+    Returns
+    -------
+    id : str
+        The id of the question.
+    """
+    return pageParser.getId(url)
+
 def answer(url, cookie, userAgent):
     """
     Gets answer data from Chegg.
@@ -39,17 +55,31 @@ def answer(url, cookie, userAgent):
     """
     cookieStr = cookieParser.parseCookie(cookie)
     isChapter = pageParser.checkLink(url)["isChapter"]
-    htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
     if isChapter:
         # await asyncio.sleep(6)
+        htmlData = requestPage.requestWebsite(url, cookieStr, userAgent)
         htmlRaw = requestPage.requestChapter(url, cookieStr, userAgent, htmlData)
     else:
-        htmlRaw = htmlData
+        qid = pageParser.getId(url)
+        data = {
+            "operationName":"QnaPageQuestionByLegacyId",
+            "variables": {
+                "id":int(qid)
+            },
+            "extensions": {
+                "persistedQuery": {
+                    "version":1,
+                    "sha256Hash":"26efed323ef07d1759f67adadd2832ac85d7046b7eca681fe224d7824bab0928"
+                }
+            }
+        }
+        raw = requestPage.requestGraphQl(cookieStr, userAgent, data)
+        htmlRaw = raw["data"]["questionByLegacyId"]["htmlAnswers"][0]["answerData"]["html"]
     dataRaw = pageParser.parsePage(htmlRaw, isChapter)
     if isChapter:
         data = dataRaw[1]
     else:
-        data = dataRaw[1]
+        data = dataRaw
     parsedAnswer = answerParser.getAnswer(data, isChapter)
     if isChapter:
         answer = parsedAnswer[0]

@@ -77,7 +77,7 @@ def requestGraphQl(cookie, userAgent, data):
     }
     url = "https://gateway.chegg.com/one-graph/graphql"
     response = requests.post(url=url, headers=headers, json=data, data=None)
-    return response.text
+    return response.json()
 
 def requestEnhancedAnswer(url, cookie, userAgent, html):
     headers = {

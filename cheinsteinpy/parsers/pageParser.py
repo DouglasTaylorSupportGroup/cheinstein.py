@@ -27,6 +27,4 @@ def parsePage(data, isChapter):
         return questionjson, solutionjson
     else:
         soup = bs(data, "html.parser")
-        questionhtml = soup.find("div", {"class": "question-body-text"})
-        answerhtml = soup.find("div", {"class": "answer-given-body"})
-        return questionhtml, answerhtml
+        return soup
