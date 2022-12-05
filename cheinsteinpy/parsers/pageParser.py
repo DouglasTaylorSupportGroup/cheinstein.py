@@ -9,6 +9,13 @@ def checkLink(link):
     linkCheck = {"isChapter": isChapter}
     return linkCheck
 
+def getId(link):
+    item = re.search(r'chegg.com/homework-help/questions-and-answers/(.*?)-q(\d+)', link)
+    if item:
+        return item.group(2)
+    else:
+        return None
+
 def parsePage(data, isChapter):
     if isChapter:
         chapter = data["data"]["textbook_solution"]["chapter"][0]
@@ -20,6 +27,4 @@ def parsePage(data, isChapter):
         return questionjson, solutionjson
     else:
         soup = bs(data, "html.parser")
-        questionhtml = soup.find("div", {"class": "question-body-text"})
-        answerhtml = soup.find("div", {"class": "answer-given-body"})
-        return questionhtml, answerhtml
+        return soup
